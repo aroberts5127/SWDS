@@ -340,3 +340,6 @@ ASALocalRun/
 healthchecksdb
 /Temp
 /Builds
+/Library/il2cpp_android_x86
+/Library/il2cpp_android_armeabi-v7a
+/Library/il2cpp_android_arm64-v8a
