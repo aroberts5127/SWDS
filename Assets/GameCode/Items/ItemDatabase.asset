@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3133faa37d381a94e8741c810364e02e, type: 3}
+  m_Name: ItemDatabase
+  m_EditorClassIdentifier: 
+  m_CItems:
+  - m_Name: Single Shot Upgrade
+    m_ID: 1
+    m_RepObject: {fileID: 1122418154785458, guid: 90044d943643c7840b08a7ebbb5b0dfe,
+      type: 2}
+  - m_Name: Spread Shot Upgrade
+    m_ID: 2
+    m_RepObject: {fileID: 1166015761204462, guid: fc151ddcc9a618641846d4424fb1fa1a,
+      type: 2}
+  m_UCItems:
+  - m_Name: Turret Upgrade
+    m_ID: 3
+    m_RepObject: {fileID: 1705750837582712, guid: 50cb3c6c556221641b1d1b88dbdee322,
+      type: 2}
+  m_RItems:
+  - m_Name: Bomb Pack
+    m_ID: 4
+    m_RepObject: {fileID: 1652174692210176, guid: 91bafe2ff392ea9479eec5ca4bcf6534,
+      type: 2}
+  m_URItems:
+  - m_Name: Health Pack
+    m_ID: 5
+    m_RepObject: {fileID: 1155961375943938, guid: f4d4e6633e7b381479d0cd5202d443e4,
+      type: 2}
