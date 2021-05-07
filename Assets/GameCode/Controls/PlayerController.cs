@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviour
             Cannon_Global.Instance.Assets.ImmuneBarrier.SetActive(true);
             Cannon_Global.Instance.Assets.LeftWall.GetComponent<EnemyColliderDetection>().enabled = false;
             Cannon_Global.Instance.Assets.RightWall.GetComponent<EnemyColliderDetection>().enabled = false;
-            Cannon_Global.Instance.Presentation.UpdatePresentation();
+            Cannon_EventHandler.instance.playerHitHandler();
             yield return new WaitForSeconds(0.1f);
             this.GetComponentInChildren<Animator>().SetBool("Hit", false);
             while (Cannon_Global.Instance.Assets.ImmuneBarrier.activeSelf)
@@ -271,8 +271,7 @@ public class PlayerController : MonoBehaviour
         {
             curBombs++;
         }
-        Cannon_Global.Instance.Presentation.UpdatePresentation();
-        Cannon_Global.Instance.Presentation.SpawnBombGainObj();
+        Cannon_EventHandler.instance.collectBombHandler();
     }
 
     private void CollectExtraLife()
@@ -307,7 +306,7 @@ public class PlayerController : MonoBehaviour
                 yield return null;
             }
             curBombs--;
-            Cannon_Global.Instance.Presentation.UpdatePresentation();
+            Cannon_EventHandler.instance.usetBombHandler();
         }
         else
         {

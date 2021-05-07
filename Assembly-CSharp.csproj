@@ -67,6 +67,7 @@
     <Compile Include="Assets\Fonts\Script\scriptTexttest.cs" />
     <Compile Include="Assets\GameCode\Cannon_Assets.cs" />
     <Compile Include="Assets\GameCode\Cannon_Audio.cs" />
+    <Compile Include="Assets\GameCode\Cannon_EventHandler.cs" />
     <Compile Include="Assets\GameCode\Cannon_Global.cs" />
     <Compile Include="Assets\GameCode\Cannon_GlobalSettings.cs" />
     <Compile Include="Assets\GameCode\Cannon_Presentation.cs" />
@@ -113,9 +114,6 @@
     <Reference Include="UnityEngine.Monetization">
       <HintPath>D:/RobertsAndrew_Unity/CannonGame/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
     </Reference>
-    <Reference Include="com.unity.multiplayer-hlapi.Editor">
-      <HintPath>D:/RobertsAndrew_Unity/CannonGame/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>D:/RobertsAndrew_Unity/CannonGame/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
@@ -130,12 +128,6 @@
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>D:/RobertsAndrew_Unity/CannonGame/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/RobertsAndrew_Unity/CannonGame/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.multiplayer-weaver.Editor">
-      <HintPath>D:/RobertsAndrew_Unity/CannonGame/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
       <HintPath>D:/RobertsAndrew_Unity/CannonGame/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
@@ -166,9 +158,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>D:/RobertsAndrew_Unity/CannonGame/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.multiplayer-hlapi.Runtime">
-      <HintPath>D:/RobertsAndrew_Unity/CannonGame/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Unity/2019.3.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

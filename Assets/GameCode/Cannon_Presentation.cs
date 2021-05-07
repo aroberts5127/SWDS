@@ -62,6 +62,10 @@ public class Cannon_Presentation : MonoBehaviour {
         Score = 0;
         scoreMod = 0;
         Cannon_Global.Instance.presentationFinished = true;
+        Cannon_EventHandler.gainPointsEvent += gainPointsCall;
+        Cannon_EventHandler.playerHitEvent += UpdateLifeCounter;
+        Cannon_EventHandler.useBombEvent += UpdateBombCounter;
+        Cannon_EventHandler.collectBombEvent += UpdateBombCounterAndScore;
 	}
 	
 	// Update is called once per frame
@@ -76,7 +80,14 @@ public class Cannon_Presentation : MonoBehaviour {
         UpdateLifeCounter();
     }
 
-    public void UpdateScore()
+    private void gainPointsCall(int score)
+    {
+        Score += score;
+        UpdateScore();
+        SpawnPointGainObj(score);
+    }
+
+    private void UpdateScore()
     {
         //Debug.Log("Score: " + Score);
         if (Score < 9999999)
@@ -115,6 +126,12 @@ public class Cannon_Presentation : MonoBehaviour {
             UseBombButton.interactable = false;
         }
         BombCountText.text = Cannon_Global.Instance.Player.CurrentBombs.ToString();
+    }
+    private void UpdateBombCounterAndScore()
+    {
+        UpdateScore();
+        UpdateBombCounter();
+        SpawnBombGainObj();
     }
 
     private void UpdateLifeCounter()

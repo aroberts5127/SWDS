@@ -19,9 +19,7 @@ public class PickupController : MonoBehaviour {
         {
             Cannon_Global.Instance.Audio.PickupAudio();
             other.gameObject.GetComponentInParent<PlayerController>().CollectPickup(pType);
-            Cannon_Global.Instance.Presentation.Score += pickupValue;
-            Cannon_Global.Instance.Presentation.UpdateScore();
-            Cannon_Global.Instance.Presentation.SpawnPointGainObj(pickupValue);
+            Cannon_EventHandler.instance.gainPointsHandler(pickupValue);
         }
         else
         {

@@ -59,9 +59,7 @@ public class Enemy : MonoBehaviour {
                 yield return null;
             }
             this.GetComponent<AudioSource>().PlayOneShot(takeDamageSound, .1f * Cannon_Global.Instance.Audio.masterVolume * Cannon_Global.Instance.Audio.soundVolume);
-            Cannon_Global.Instance.Presentation.Score += 10;
-            Cannon_Global.Instance.Presentation.UpdateScore();
-            Cannon_Global.Instance.Presentation.SpawnPointGainObj(10);
+            Cannon_EventHandler.instance.gainPointsHandler(10);
             //HealthSprite.sprite = Cannon_Global.Instance.Assets.EnemyHealthImageList[curHealth - 1];
             if (gs == GunState.LAZER)
             {
@@ -100,9 +98,7 @@ public class Enemy : MonoBehaviour {
         Cannon_Global.Instance.CurrentEnemyCount -= 1;
         if (earnRewards)
         {
-            Cannon_Global.Instance.Presentation.Score += 50;
-            Cannon_Global.Instance.Presentation.SpawnPointGainObj(50);
-            Cannon_Global.Instance.Presentation.UpdateScore();
+            Cannon_EventHandler.instance.gainPointsHandler(50);
             int r = Random.Range(0, 100);
             if (r < 30)
             {
