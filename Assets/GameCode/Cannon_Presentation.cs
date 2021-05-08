@@ -288,7 +288,7 @@ public class Cannon_Presentation : MonoBehaviour {
         GameObject pointItem = Instantiate(Cannon_Global.Instance.Assets.PointGainObj, Cannon_Global.Instance.Assets.PointGainDisplayParent, false);
         pointItem.GetComponent<Text>().text = "+" + pointValue.ToString();
         pointItem.transform.parent = Cannon_Global.Instance.Assets.PointGainDisplayParent;
-        //pointItem.GetComponent<Animation>().Play();
+        pointItem.GetComponent<Animation>().Play();
     }
 
     public void SpawnBombGainObj()

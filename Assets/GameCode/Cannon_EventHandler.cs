@@ -14,7 +14,7 @@ public class Cannon_EventHandler : MonoBehaviour
 
     void Start()
     {
-        if (instance != null)
+        if (instance == null)
             instance = this;
         else
             Destroy(this.gameObject);
