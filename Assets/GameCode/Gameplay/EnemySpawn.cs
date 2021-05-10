@@ -15,13 +15,11 @@ public class EnemySpawn : MonoBehaviour {
         Cannon_Global.Instance.CurrentEnemyCount = 0;
 	}
 	
-	// Update is called once per frame
 	void Update () {
         if (Cannon_Global.Instance.GameRunning)
         {
-            if (SpawnRoutine == null /*CheckSpawning = false*/ && Cannon_Global.Instance.CurrentEnemyCount < Cannon_Global.Instance.MaxEnemyCount)
+            if (SpawnRoutine == null && Cannon_Global.Instance.CurrentEnemyCount < Cannon_Global.Instance.MaxEnemyCount)
             {
-                //Debug.Log(Cannon_Global.Instance.CurrentEnemyCount + " " + Cannon_Global.Instance.MaxEnemyCount);
                 int s = Random.Range(1, 10 * Cannon_Global.Instance.GamePhase);
                 SpawnRoutine = StartCoroutine(SpawnEnemy(s));
             }
@@ -50,7 +48,7 @@ public class EnemySpawn : MonoBehaviour {
         enemy.transform.GetChild(0).GetComponent<Enemy>().SetHealth(size);
         int p = Random.Range(1, 46); //Position From (+-)0.1<->4.5 after math
         float pScale = (p-1) / 10;
-        int pORm = Random.Range(1, 2);//Plus or Minus
+        int pORm = Random.Range(1, 2);
         if(pORm == 1)
             enemy.transform.position = new Vector3(pScale, 10, -10);
         else

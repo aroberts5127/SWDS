@@ -37,14 +37,12 @@ public class ImageColorShifter : MonoBehaviour {
                 {
                     g += colorChangeRate;
                     yield return new WaitForSeconds(colorChangeTime);
-                    //Debug.Log("R: " + r + ", G: " + g + ", B: " + b);
                     newColor.g = g;
                     while (b < 1)
                     {
                         b += colorChangeRate;
                         yield return new WaitForSeconds(colorChangeTime);
                         newColor.b = b;
-                        //Debug.Log("R: " + r + ", G: " + g + ", B: " + b);
                     }
                 }
                 ascend = false;
@@ -57,13 +55,11 @@ public class ImageColorShifter : MonoBehaviour {
                     g -= colorChangeRate;
                     yield return new WaitForSeconds(colorChangeTime);
                     newColor.g = g;
-                    //Debug.Log("R: " + r + ", G: " + g + ", B: " + b);
                     while (b > 0.05f)
                     {
                         b -= colorChangeRate;
                         yield return new WaitForSeconds(colorChangeTime);
                         newColor.b = b;
-                        //Debug.Log("R: " + r + ", G: " + g + ", B: " + b);
                     }
                 }
                 ascend = true;

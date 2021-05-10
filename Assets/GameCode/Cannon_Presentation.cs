@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Advertisements;
 
 public class Cannon_Presentation : MonoBehaviour {
+
+    private static string gameID = "4123403";
 
     private int scoreMod;
     private int ScoreChangeValue = 1500;
@@ -54,8 +57,8 @@ public class Cannon_Presentation : MonoBehaviour {
     public Text EndGameScoreText;
     public GameObject HighScoreNotifyGO;
 
-    // Use this for initialization
     void Start () {
+        Advertisement.Initialize(gameID);
         StartGamePresentation();
         SetAudioSliders();
         SetButtonFuntions();
@@ -89,7 +92,6 @@ public class Cannon_Presentation : MonoBehaviour {
 
     private void UpdateScore()
     {
-        //Debug.Log("Score: " + Score);
         if (Score < 9999999)
         {
             string scoreString = Score.ToString();
@@ -166,10 +168,6 @@ public class Cannon_Presentation : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// Sets the Presentation for the Start Screen, where you can navigate menus,
-    /// settings, profile, and start the game
-    /// </summary>
     public void StartGamePresentation()
     {
         Cannon_Global.Instance.GameRunning = false;
@@ -178,14 +176,13 @@ public class Cannon_Presentation : MonoBehaviour {
         EndGameUIParent.SetActive(false);
         
     }
-
-    /// <summary>
-    /// Stops the game and presents the endgame presentation
-    /// Tracks score, submits to server(eventually), and displays
-    /// Titles, buttons, etc for continued user interaction
-    /// </summary>
     public void EndGamePresentation()
     {
+        //ADS HERE!?
+        if (Advertisement.IsReady())
+        {
+            Advertisement.Show("video");
+        }
         Cannon_Global.Instance.CurrentGameState = GameState.ENDGAME;
         foreach(Transform t in Cannon_Global.Instance.Assets.EnemyParent)
         {
@@ -213,9 +210,6 @@ public class Cannon_Presentation : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// Hides Start Screen Presentation Objects (Titles, Buttons, etc) and begins the game
-    /// </summary>
     public IEnumerator OnClickStartGame()
     {
         Cannon_Global.Instance.CurrentGameState = GameState.LOADING;
@@ -253,6 +247,7 @@ public class Cannon_Presentation : MonoBehaviour {
     public void OnClick_ReturnToMenu()
     {
         Score = 0;
+        scoreMod = 0;
         Cannon_Global.Instance.Player.CurrentBombs = 0;
         Cannon_Global.Instance.Player.curHealth = Cannon_GlobalSettings.MAXSTARTINGLIVES;
         Cannon_Global.Instance.CurrentGameState = GameState.START;
@@ -287,19 +282,18 @@ public class Cannon_Presentation : MonoBehaviour {
     {
         GameObject pointItem = Instantiate(Cannon_Global.Instance.Assets.PointGainObj, Cannon_Global.Instance.Assets.PointGainDisplayParent, false);
         pointItem.GetComponent<Text>().text = "+" + pointValue.ToString();
-        pointItem.transform.parent = Cannon_Global.Instance.Assets.PointGainDisplayParent;
+        pointItem.transform.SetParent(Cannon_Global.Instance.Assets.PointGainDisplayParent);
         pointItem.GetComponent<Animation>().Play();
     }
 
     public void SpawnBombGainObj()
     {
         GameObject bombItem = Instantiate(Cannon_Global.Instance.Assets.BombGainObj, Cannon_Global.Instance.Assets.BombGainDisplayParent, false);
-        bombItem.transform.parent = Cannon_Global.Instance.Assets.BombGainDisplayParent;
+        bombItem.transform.SetParent(Cannon_Global.Instance.Assets.BombGainDisplayParent);
     }
 
     public void SpawnWeaponGainObj(ShotType s)
     {
-        //Debug.Log(gs + " " + fs);
         string message = "";
         switch (s)
         {
@@ -311,10 +305,8 @@ public class Cannon_Presentation : MonoBehaviour {
                 break;
             
         }
-        
-
         GameObject WeaponItem = Instantiate(Cannon_Global.Instance.Assets.WeaponGainObj, Cannon_Global.Instance.Assets.WeaponGainDisplayParent, false);
-        WeaponItem.transform.parent = Cannon_Global.Instance.Assets.WeaponGainDisplayParent;
+        WeaponItem.transform.SetParent(Cannon_Global.Instance.Assets.WeaponGainDisplayParent);
         WeaponItem.GetComponentInChildren<Text>().text = message;
     }
 
@@ -372,5 +364,60 @@ public class Cannon_Presentation : MonoBehaviour {
             SfxSlider.value = 1f;
             MusicSlider.value = 1f;
         }
+    }
+
+    public void SpawnLoot(Transform spawnPoint)
+    {
+        //Debug.Log("Spawn Loot");
+
+        int itemListLength = 1;
+        ItemRarity itemList = ItemRarity.NONE;
+        int itemQuality = Random.Range(0, 10);
+
+        if (itemQuality == 0)
+        {
+            //UltraRare
+            itemList = ItemRarity.ULTRARARE;
+            itemListLength = Cannon_Global.Instance.Assets.Database.URItems.Length;
+        }
+        else if (itemQuality > 0 && itemQuality <= 2)
+        {
+            //Rare
+            itemList = ItemRarity.RARE;
+            itemListLength = Cannon_Global.Instance.Assets.Database.RItems.Length;
+        }
+        else if (itemQuality > 2 && itemQuality <= 5)
+        {
+            itemList = ItemRarity.UNCOMMON;
+            itemListLength = Cannon_Global.Instance.Assets.Database.UCItems.Length;
+        }
+        else
+        {
+            itemList = ItemRarity.COMMON;
+            itemListLength = Cannon_Global.Instance.Assets.Database.CItems.Length;
+        }
+
+        int r = Random.Range(0, itemListLength);
+        ItemData[] list = Cannon_Global.Instance.Assets.Database.CItems;
+        switch (itemList)
+        {
+            case (ItemRarity.COMMON):
+                list = Cannon_Global.Instance.Assets.Database.CItems;
+                break;
+            case (ItemRarity.UNCOMMON):
+                list = Cannon_Global.Instance.Assets.Database.UCItems;
+                break;
+            case (ItemRarity.RARE):
+                list = Cannon_Global.Instance.Assets.Database.RItems;
+                break;
+            case (ItemRarity.ULTRARARE):
+                list = Cannon_Global.Instance.Assets.Database.URItems;
+                break;
+            case (ItemRarity.NONE):
+                return;
+        }
+        GameObject pickup = Instantiate(list[r].RepObject);
+        pickup.transform.SetParent(Cannon_Global.Instance.Assets.PickupParent);
+        pickup.transform.position = spawnPoint.position;
     }
 }

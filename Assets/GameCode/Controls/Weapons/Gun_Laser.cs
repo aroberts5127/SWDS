@@ -22,15 +22,8 @@ public class Gun_Laser : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         gunState = GunState.LAZER;
-        //setAudioVolume();
-        //collidedWith = new List<Collider>();
-        //active = false;
     }
 
-    private void Update()
-    {
-        
-    }
 
     private void FixedUpdate()
     {
@@ -43,19 +36,6 @@ public class Gun_Laser : MonoBehaviour {
 
     public IEnumerator AutoFire()
     {
-        /* Raycast Firing for Constant Lazer If I Wish To Reimplement It
-        //Debug.Log("Here");
-        RaycastHit[] hitList;
-        //RaycastHit hit;
-        LayerMask mask = LayerMask.GetMask("Enemy");
-        hitList = Physics.RaycastAll(AmmoSpawn.position, Vector3.up, 50.0f, mask);
-        if (hitList.Length > 0)
-        {
-            hitList[0].collider.gameObject.GetComponentInParent<Enemy>().PublicTakeDamage(1, gunState, 1 / FireRate);
-        }
-        yield return new WaitForFixedUpdate();
-        FireRoutine = null;
-        */
         GameObject sbullet = Instantiate(ammunition, Cannon_Global.Instance.Assets.BulletParent, false);
         sbullet.transform.position = AmmoSpawn.position;
         GunSound.PlayOneShot(Cannon_Global.Instance.Assets.GunSound, .5f * Cannon_Global.Instance.Audio.masterVolume * Cannon_Global.Instance.Audio.soundVolume);
@@ -69,16 +49,6 @@ public class Gun_Laser : MonoBehaviour {
         AmmoSpawn.transform.GetComponentInChildren<AudioSource>().volume = AudioVolume * Cannon_Global.Instance.Audio.masterVolume * Cannon_Global.Instance.Audio.soundVolume;
     }
 
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawRay(AmmoSpawn.position, Vector3.up * 10);
-    //}
-
-
-    //TODO - make this function so that it can be used during Pause as well if possible
-    //And Turn off a little more smoothly. Shutting it off with SetActive() makes the ray disappea
-    //outright. Can stop the particle effect and sound, then turn them off completely
     public void TurnOffGun()
     {
         AmmoSpawn.transform.GetChild(0).gameObject.SetActive(false);

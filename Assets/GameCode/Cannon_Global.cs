@@ -46,7 +46,6 @@ public class Cannon_Global : MonoBehaviour {
         if (Audio == null)
             Audio = this.GetComponent<Cannon_Audio>();
     }
-    // Use this for initialization
     void Start () {
         StartCoroutine(LoadedIn());
 	}

@@ -80,7 +80,6 @@ public class GunBase : MonoBehaviour {
                     if (this.singleShotCurFireRate > this.singleShotMaxFireRate)
                         this.singleShotCurFireRate = this.singleShotMaxFireRate;
                 }
-                //FireRate = this.singleShotCurFireRate;
                 singleShotAmmunition = Cannon_Global.Instance.Assets.SingleShotBulletTypes[this.SingleShotLevel - 1];
                 break;
 
@@ -94,7 +93,6 @@ public class GunBase : MonoBehaviour {
                         this.spreadShotCurFireRate = this.spreadShotMaxFireRate;
                 }
                 spreadShotAmmunition = Cannon_Global.Instance.Assets.SpreadShotBulletTypes[this.SpreadShotLevel - 1];
-                //FireRate = this.spreadShotCurFireRate;
                 break;
         }
     }

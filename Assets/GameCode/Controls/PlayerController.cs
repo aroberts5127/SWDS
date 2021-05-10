@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //Camera mainCamera = Camera.main;
         if (Cannon_Global.Instance.Player == null)
         {
             Cannon_Global.Instance.Player = this;
@@ -63,7 +62,6 @@ public class PlayerController : MonoBehaviour
         Cannon_Global.Instance.playerReady = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Cannon_Global.Instance.GameRunning)
@@ -149,25 +147,8 @@ public class PlayerController : MonoBehaviour
                         Motor.GetComponentInChildren<Animator>().SetBool("Moving", false);
                         break;
                 }
-                //touchPos = Input.GetTouch(0).position;
             }
 #endif
-            //if (Input.GetKey(KeyCode.Alpha1))
-            //{
-            //    Motor.ChangeGuns();
-            //}
-            //if (Input.GetKey(KeyCode.Alpha2))
-            //{
-            //    Motor.ChangeGuns(GunState.CANNON, FireState.DOUBLE);
-            //}
-            //if (Input.GetKey(KeyCode.Alpha3))
-            //{
-            //    Motor.ChangeGuns(GunState.LAZER, FireState.SINGLE);
-            //}
-            //if (Input.GetKey(KeyCode.Alpha4))
-            //{
-            //    Motor.ChangeGuns(GunState.LAZER, FireState.DOUBLE);
-            //}
         }
     }
 
@@ -177,11 +158,6 @@ public class PlayerController : MonoBehaviour
         if (DamageRoutine == null)
             DamageRoutine = StartCoroutine(TakeDamage());
     }
-
-    /// <summary>
-    /// Controls the Depletion of lives when you come into contact with an enemy
-    /// Also sets state for Invulnerable for (x) seconds after taking damage
-    /// </summary>
     private IEnumerator TakeDamage()
     {
         isInvulnerable = true;
@@ -213,20 +189,16 @@ public class PlayerController : MonoBehaviour
 
         }
         DamageRoutine = null;
-        //Debug.Log("Can Take Damage Again");
         isInvulnerable = false;
         yield break;
     }
 
     private void PlayerDies()
     {
-        //Debug.Log("Dead");
         Motor.CurrentDirection = Direction.NONE;
         Motor.GetComponentInChildren<Animator>().SetFloat("Walking Direction", 0);
         Motor.GetComponentInChildren<Animator>().SetBool("Moving", false);
-        Motor.GetComponentInChildren<Animator>().SetBool("Playing", false);
-        //Cannon_Global.Instance.GameRunning = false;
-        
+        Motor.GetComponentInChildren<Animator>().SetBool("Playing", false);      
         Cannon_Global.Instance.Presentation.EndGamePresentation();
         isInvulnerable = false;
         curBombs = 0;
@@ -235,7 +207,6 @@ public class PlayerController : MonoBehaviour
     #region Collect Pickup Functions
     public void CollectPickup(PickupType type)
     {
-        //Debug.Log("Player Collected Pickup");
         switch (type)
         {
             case (PickupType.BOMB):
@@ -253,7 +224,6 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case (PickupType.TURRET):
-                //TODO - Spawn new mini laser
                 SpawnLazerCannon();
                 break;
 
@@ -276,7 +246,6 @@ public class PlayerController : MonoBehaviour
 
     private void CollectExtraLife()
     {
-        //Debug.Log("Extra Life Gained");
         curHealth++;
         Cannon_Global.Instance.Presentation.UpdatePresentation();
     }

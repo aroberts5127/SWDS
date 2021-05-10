@@ -6,12 +6,6 @@ public class BulletController : MonoBehaviour {
     public float speed;
     public int level;
     public float enemyCollisionStrength;
-
-    private Collider col;
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -31,7 +25,6 @@ public class BulletController : MonoBehaviour {
         {
             return;
         }
-        //Debug.Log("Destroying Bullet! " + other.gameObject.name);
         if (level != 3)
         {
             Destroy(this.gameObject);
@@ -57,12 +50,6 @@ public class BulletController : MonoBehaviour {
             yield return null;
         }
         Destroy(this.gameObject);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(this.transform.position, this.transform.up * 2);
     }
 
 }

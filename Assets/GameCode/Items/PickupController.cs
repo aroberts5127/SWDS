@@ -9,9 +9,6 @@ public class PickupController : MonoBehaviour {
     public PickupType pType;
     public int pickupValue;
 
-	// Use this for initialization
-
-
     private void OnTriggerEnter(Collider other)
     {
         
