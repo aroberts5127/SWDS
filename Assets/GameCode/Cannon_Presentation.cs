@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-public class Cannon_Presentation : MonoBehaviour {
+public class Cannon_Presentation : MonoBehaviour, IUnityAdsListener {
 
     private static string gameID = "4123403";
 
@@ -54,6 +54,7 @@ public class Cannon_Presentation : MonoBehaviour {
     public GameObject EndGameUIParent;
     public Button EndGameRetryButton;
     public Button EndGameMenuButton;
+    public Button EndGameContinueButton;
     public Text EndGameScoreText;
     public GameObject HighScoreNotifyGO;
 
@@ -69,7 +70,9 @@ public class Cannon_Presentation : MonoBehaviour {
         Cannon_EventHandler.playerHitEvent += UpdateLifeCounter;
         Cannon_EventHandler.useBombEvent += UpdateBombCounter;
         Cannon_EventHandler.collectBombEvent += UpdateBombCounterAndScore;
-	}
+        ShowResult sr = new ShowResult();
+        Advertisement.AddListener(this);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -179,10 +182,10 @@ public class Cannon_Presentation : MonoBehaviour {
     public void EndGamePresentation()
     {
         //ADS HERE!?
-        if (Advertisement.IsReady())
-        {
-            Advertisement.Show("video");
-        }
+        //if (Advertisement.IsReady())
+        //{
+        //    Advertisement.Show("Video");
+        //}
         Cannon_Global.Instance.CurrentGameState = GameState.ENDGAME;
         foreach(Transform t in Cannon_Global.Instance.Assets.EnemyParent)
         {
@@ -216,7 +219,7 @@ public class Cannon_Presentation : MonoBehaviour {
         StartGameUIParent.SetActive(false);
         InGameUIParent.SetActive(true);
         EndGameUIParent.SetActive(false);
-        
+        EndGameContinueButton.gameObject.SetActive(true);
         UpdatePresentation();
         ReadyText.gameObject.SetActive(true);
         Cannon_Global.Instance.Player.SetCharacterToReady();
@@ -273,10 +276,22 @@ public class Cannon_Presentation : MonoBehaviour {
         UseBombButton.onClick.AddListener(delegate { StartCoroutine(Cannon_Global.Instance.Player.OnClickUseBomb()); });
         EndGameRetryButton.onClick.AddListener(delegate { OnClick_Retry(); });
         EndGameMenuButton.onClick.AddListener(delegate { OnClick_ReturnToMenu(); });
+        EndGameContinueButton.onClick.AddListener(delegate { OnClick_PlayAdToContinue(); });
         OptionsButton.onClick.AddListener(delegate { OnClick_OpenOptions(); });
         OptionsCloseButton.onClick.AddListener(delegate { OnClick_CloseOptions(); });
         SwitchWeaponButton.onClick.AddListener(delegate { OnClickSwitchWeapons(); });
     }
+
+    private void OnClick_PlayAdToContinue()
+    {
+        if (Advertisement.IsReady("video"))
+        {
+            Advertisement.Show("video");
+        }
+
+    }
+
+    
 
     public void SpawnPointGainObj(int pointValue)
     {
@@ -419,5 +434,59 @@ public class Cannon_Presentation : MonoBehaviour {
         GameObject pickup = Instantiate(list[r].RepObject);
         pickup.transform.SetParent(Cannon_Global.Instance.Assets.PickupParent);
         pickup.transform.position = spawnPoint.position;
+    }
+
+    public void OnUnityAdsReady(string placementId)
+    {
+        
+    }
+
+    public void OnUnityAdsDidError(string message)
+    {
+        
+    }
+
+    public void OnUnityAdsDidStart(string placementId)
+    {
+        //Probably want to send some kind of analytics back to me when I set up a webserver
+    }
+
+    public void OnUnityAdsDidFinish(string surfacingId, ShowResult showResult)
+    {
+        Debug.Log(surfacingId);
+        // Define conditional logic for each ad completion status:
+        if (showResult == ShowResult.Finished)
+        {
+            // Reward the user for watching the ad to completion.
+            if(surfacingId == "video")
+            {
+                continueGameFromEndScreen();
+            }
+        }
+        else if (showResult == ShowResult.Skipped)
+        {
+            if (surfacingId == "video")
+            {
+                continueGameFromEndScreen();
+            }
+        }
+        else if (showResult == ShowResult.Failed)
+        {
+            Debug.LogWarning("The ad did not finish due to an error.");
+        }
+    }
+
+    private void continueGameFromEndScreen()
+    {
+        Cannon_Global.Instance.Player.curHealth = 1;
+        Cannon_Global.Instance.CurrentGameState = GameState.LOADING;
+        StartGameUIParent.SetActive(false);
+        InGameUIParent.SetActive(true);
+        EndGameUIParent.SetActive(false);
+        Cannon_Global.Instance.Player.SetCharacterToReady();
+        UpdatePresentation();
+        Cannon_Global.Instance.CurrentGameState = GameState.PLAYING;
+        Cannon_Global.Instance.GameRunning = true;
+        EndGameContinueButton.gameObject.SetActive(false);
     }
 }
