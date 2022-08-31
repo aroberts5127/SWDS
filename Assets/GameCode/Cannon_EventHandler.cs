@@ -11,8 +11,10 @@ public class Cannon_EventHandler : MonoBehaviour
     public static event Action playerHitEvent;
     public static event Action collectBombEvent;
     public static event Action useBombEvent;
+    public static event Action userLoadedEvent;
+    public static event Action userCurrencyUpdateEvent;
 
-    void Start()
+    void Awake()
     {
         if (instance == null)
             instance = this;
@@ -31,9 +33,19 @@ public class Cannon_EventHandler : MonoBehaviour
     {
         collectBombEvent?.Invoke();
     }
-    public void usetBombHandler()
+    public void useBombHandler()
     {
         useBombEvent?.Invoke();
+    }
+
+    public void userLoadedHandler()
+    {
+        userLoadedEvent?.Invoke();
+    }
+
+    public void currencyUpdateHandler()
+    {
+        userCurrencyUpdateEvent?.Invoke();
     }
 
 }

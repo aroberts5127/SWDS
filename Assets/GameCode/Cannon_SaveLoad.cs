@@ -11,6 +11,9 @@ public static class Cannon_SaveLoad {
         PlayerPrefs.SetFloat(Cannon_GlobalSettings.VOLUME_MASTER, 1f);
         PlayerPrefs.SetFloat(Cannon_GlobalSettings.VOLUME_SOUNDS, 1f);
         PlayerPrefs.SetFloat(Cannon_GlobalSettings.VOLUME_MUSIC, 1f);
+        PlayerPrefs.SetString(Cannon_GlobalSettings.ACCTNAME, "");
+        PlayerPrefs.SetString(Cannon_GlobalSettings.ACCTID, "");
+        PlayerPrefs.SetInt(Cannon_GlobalSettings.ACCTCURRENCY, 0);
     }
 
     public static void SaveHighScore(int Highscore)

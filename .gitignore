@@ -64,7 +64,6 @@ StyleCopReport.xml
 *_p.c
 *_h.h
 *.ilk
-*.meta
 *.obj
 *.iobj
 *.pch
@@ -343,3 +342,4 @@ healthchecksdb
 /Library/il2cpp_android_x86
 /Library/il2cpp_android_armeabi-v7a
 /Library/il2cpp_android_arm64-v8a
+/Library

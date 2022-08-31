@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Advertisements;
+using TMPro;
 
 public class Cannon_Presentation : MonoBehaviour, IUnityAdsListener {
 
@@ -16,6 +17,8 @@ public class Cannon_Presentation : MonoBehaviour, IUnityAdsListener {
     public Button StartGameButton;
     public Button OptionsButton;
     public GameObject OptionsUIParent;
+    public TextMeshProUGUI AccountNameTMP;
+    public TextMeshProUGUI AccountCoinsTMP;
 
     [Header("Options UI")]
     public Button OptionsCloseButton;
@@ -65,19 +68,23 @@ public class Cannon_Presentation : MonoBehaviour, IUnityAdsListener {
         SetButtonFuntions();
         Score = 0;
         scoreMod = 0;
+        Cannon_EventHandler.userLoadedEvent += updatePlayerName;
+        Cannon_EventHandler.userCurrencyUpdateEvent += updateAccountCurrencyDisplay;
         Cannon_Global.Instance.presentationFinished = true;
         Cannon_EventHandler.gainPointsEvent += gainPointsCall;
         Cannon_EventHandler.playerHitEvent += UpdateLifeCounter;
         Cannon_EventHandler.useBombEvent += UpdateBombCounter;
         Cannon_EventHandler.collectBombEvent += UpdateBombCounterAndScore;
-        ShowResult sr = new ShowResult();
+        
         Advertisement.AddListener(this);
+
+        Cannon_EventHandler.instance.currencyUpdateHandler();
+        Cannon_EventHandler.instance.userLoadedHandler();
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+    }
 
     public void UpdatePresentation()
     {
@@ -177,7 +184,6 @@ public class Cannon_Presentation : MonoBehaviour, IUnityAdsListener {
         StartGameUIParent.SetActive(true);
         InGameUIParent.SetActive(false);
         EndGameUIParent.SetActive(false);
-        
     }
     public void EndGamePresentation()
     {
@@ -291,8 +297,6 @@ public class Cannon_Presentation : MonoBehaviour, IUnityAdsListener {
 
     }
 
-    
-
     public void SpawnPointGainObj(int pointValue)
     {
         GameObject pointItem = Instantiate(Cannon_Global.Instance.Assets.PointGainObj, Cannon_Global.Instance.Assets.PointGainDisplayParent, false);
@@ -324,7 +328,6 @@ public class Cannon_Presentation : MonoBehaviour, IUnityAdsListener {
         WeaponItem.transform.SetParent(Cannon_Global.Instance.Assets.WeaponGainDisplayParent);
         WeaponItem.GetComponentInChildren<Text>().text = message;
     }
-
     public void OnClickSwitchWeapons()
     {
         if (Cannon_Global.Instance.CurrentGun.currentShotType == ShotType.SINGLE)
@@ -488,5 +491,15 @@ public class Cannon_Presentation : MonoBehaviour, IUnityAdsListener {
         Cannon_Global.Instance.CurrentGameState = GameState.PLAYING;
         Cannon_Global.Instance.GameRunning = true;
         EndGameContinueButton.gameObject.SetActive(false);
+    }
+
+    private void updatePlayerName()
+    {
+        AccountNameTMP.text = Cannon_Global.Instance.Account._name;
+    }
+
+    private void updateAccountCurrencyDisplay()
+    {
+        AccountCoinsTMP.text = Cannon_Global.Instance.Account.currency.ToString();
     }
 }

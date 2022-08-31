@@ -275,7 +275,7 @@ public class PlayerController : MonoBehaviour
                 yield return null;
             }
             curBombs--;
-            Cannon_EventHandler.instance.usetBombHandler();
+            Cannon_EventHandler.instance.useBombHandler();
         }
         else
         {
