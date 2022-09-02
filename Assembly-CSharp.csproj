@@ -87,6 +87,7 @@
     <Compile Include="Assets\GameCode\Gameplay\Helper\AnimEventHelper.cs" />
     <Compile Include="Assets\GameCode\Gameplay\Helper\SpreadShotParentHelper.cs" />
     <Compile Include="Assets\GameCode\Gameplay\ImageColorShifter.cs" />
+    <Compile Include="Assets\GameCode\Gameplay\MeshRenderColorShifter.cs" />
     <Compile Include="Assets\GameCode\Items\Item.cs" />
     <Compile Include="Assets\GameCode\Items\ItemDatabase.cs" />
     <Compile Include="Assets\GameCode\Items\PickupController.cs" />

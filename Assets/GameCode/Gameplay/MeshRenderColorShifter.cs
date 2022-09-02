@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class ImageColorShifter : MonoBehaviour {
+public class MeshRenderColorShifter : MonoBehaviour
+{
     public float colorChangeTime;
-    public Image img;
+    public MeshRenderer mr;
 
     private float colorChangeRate = .05f;
     private Color newColor;
@@ -69,7 +69,6 @@ public class ImageColorShifter : MonoBehaviour {
 
     private void updateColor()
     {
-        img.CrossFadeColor(newColor, 0, false, false);
+        mr.material.color = newColor;
     }
 }
-

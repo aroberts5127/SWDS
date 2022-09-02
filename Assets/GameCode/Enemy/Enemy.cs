@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour {
     private bool canTakeDamage;
     private bool dying;
 
-    public Transform TextObj;
+    public TextMesh TextObj;
 	void Start () {
         canTakeDamage = true;
 	}
@@ -144,7 +144,7 @@ public class Enemy : MonoBehaviour {
 
     public void UpdateHealthDisplay()
     {
-        TextObj.GetChild(0).GetComponent<TextMesh>().text = curHealth.ToString();
+        TextObj.text = curHealth.ToString();
     }
 
 }

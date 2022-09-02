@@ -305,7 +305,7 @@ MonoBehaviour:
   takeDamageSound: {fileID: 8300000, guid: b292a313f87b3c9478c890fda00bed9a, type: 3}
   audioSource: {fileID: 82227573007342414}
   rb: {fileID: 54380032623560428}
-  TextObj: {fileID: 4973064768522116}
+  TextObj: {fileID: 102910038748381314}
 --- !u!114 &114028635357072516
 MonoBehaviour:
   m_ObjectHideFlags: 0
