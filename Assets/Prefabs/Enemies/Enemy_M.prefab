@@ -736,6 +736,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curHealth: 5
   takeDamageSound: {fileID: 8300000, guid: b292a313f87b3c9478c890fda00bed9a, type: 3}
+  audioSource: {fileID: 82924909548115520}
+  rb: {fileID: 54667475317625362}
   TextObj: {fileID: 4314543872801194}
 --- !u!114 &114133167082237750
 MonoBehaviour:

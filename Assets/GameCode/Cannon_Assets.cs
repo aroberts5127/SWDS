@@ -34,6 +34,7 @@ public class Cannon_Assets : MonoBehaviour {
 
    [Header("UI Objects")]
     public Transform HealthDisplayParent;
+    public Text HealthOverCountText;
     public Transform PointGainDisplayParent;
     public Transform BombGainDisplayParent;
     public Transform WeaponGainDisplayParent;

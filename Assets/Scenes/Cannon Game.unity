@@ -2144,6 +2144,12 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: b43c68e6a735b4d4aa98825b2527208d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 594501a317e4dca47a104e15a78d3cca, type: 3}
+--- !u!95 &537246192 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: 594501a317e4dca47a104e15a78d3cca,
+    type: 3}
+  m_PrefabInstance: {fileID: 537246191}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &554830670
 GameObject:
   m_ObjectHideFlags: 0
@@ -4057,6 +4063,7 @@ MonoBehaviour:
   LaserPositions:
   - {fileID: 1590979662}
   - {fileID: 727791069}
+  animator: {fileID: 537246192}
 --- !u!4 &1037880352
 Transform:
   m_ObjectHideFlags: 0
@@ -4088,6 +4095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentDirection: 2
+  animator: {fileID: 537246192}
   moveSpeed: 0.07
   animSpeed: 0.25
 --- !u!1 &1039013469 stripped
@@ -7537,7 +7545,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 21.55
+  m_fontSize: 21.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9010,6 +9018,7 @@ MonoBehaviour:
   LeftWall: {fileID: 1688166855}
   RightWall: {fileID: 1089758306}
   HealthDisplayParent: {fileID: 1255922220}
+  HealthOverCountText: {fileID: 299198667}
   PointGainDisplayParent: {fileID: 776197348}
   BombGainDisplayParent: {fileID: 350612385}
   WeaponGainDisplayParent: {fileID: 356556735}
@@ -9185,6 +9194,7 @@ MonoBehaviour:
   masterVolume: 1
   soundVolume: 1
   musicVolume: 1
+  audioSource: {fileID: 1652203778}
 --- !u!114 &1652203780
 MonoBehaviour:
   m_ObjectHideFlags: 0

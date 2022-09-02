@@ -29,6 +29,6 @@ public class AnimEventHelper : MonoBehaviour {
                 Cannon_Global.Instance.Presentation.SpreadShotImage.transform.SetSiblingIndex(1);
                 break;
         }
-        Cannon_Global.Instance.Presentation.SwitchWeaponButton.GetComponent<Animator>().SetBool("Switch", false);
+        Cannon_Global.Instance.Presentation.SwitchWeaponHelper(false);
     }
 }

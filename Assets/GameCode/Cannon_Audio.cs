@@ -7,15 +7,16 @@ public class Cannon_Audio : MonoBehaviour {
     public float masterVolume;
     public float soundVolume;
     public float musicVolume;
+    public AudioSource audioSource;
 
     public void EnemyDeadAudio()
     {
-        this.GetComponent<AudioSource>().PlayOneShot(Cannon_Global.Instance.Assets.EnemyDeathSound, .6f * masterVolume * soundVolume);
+        audioSource.PlayOneShot(Cannon_Global.Instance.Assets.EnemyDeathSound, .6f * masterVolume * soundVolume);
     }
 
     public void PickupAudio()
     {
-        this.GetComponent<AudioSource>().PlayOneShot(Cannon_Global.Instance.Assets.PickupSound, 1 * masterVolume * soundVolume);
+        audioSource.PlayOneShot(Cannon_Global.Instance.Assets.PickupSound, 1 * masterVolume * soundVolume);
     }
 
     public void UpdateMasterVolume()

@@ -36,6 +36,7 @@ public class Cannon_Presentation : MonoBehaviour, IUnityAdsListener {
     public Image SingleShotImage;
     public Image SpreadShotImage;
     public Button SwitchWeaponButton;
+    private Animator switchWeaponButtonAnimator;
 
     private int priv_Score;
     public int Score
@@ -61,6 +62,9 @@ public class Cannon_Presentation : MonoBehaviour, IUnityAdsListener {
     public Text EndGameScoreText;
     public GameObject HighScoreNotifyGO;
 
+
+    private bool switchButtonStateBool;
+
     void Start () {
         Advertisement.Initialize(gameID);
         StartGamePresentation();
@@ -80,6 +84,8 @@ public class Cannon_Presentation : MonoBehaviour, IUnityAdsListener {
 
         Cannon_EventHandler.instance.currencyUpdateHandler();
         Cannon_EventHandler.instance.userLoadedHandler();
+        switchButtonStateBool = true;
+        switchWeaponButtonAnimator = SwitchWeaponButton.GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
@@ -342,7 +348,11 @@ public class Cannon_Presentation : MonoBehaviour, IUnityAdsListener {
             
         }
         Cannon_Global.Instance.CurrentGun.UpdateShotSpeed();
-        SwitchWeaponButton.GetComponent<Animator>().SetBool("Switch", true);
+        switchWeaponButtonAnimator.SetBool("Switch", !switchButtonStateBool);
+    }
+    public void SwitchWeaponHelper(bool state)
+    {
+        switchWeaponButtonAnimator.SetBool("Switch", state);
     }
 
     public bool CheckHighScore(int scoreToCheck)

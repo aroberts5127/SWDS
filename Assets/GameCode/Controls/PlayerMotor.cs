@@ -9,6 +9,7 @@ public enum Direction { LEFT, RIGHT, NONE}
 public class PlayerMotor : MonoBehaviour {
 
     public Direction CurrentDirection;
+    public Animator animator;
 
     public float moveSpeed;
     public float animSpeed;

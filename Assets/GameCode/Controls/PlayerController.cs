@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private int currentLazerCount;
     public List<Transform> LaserPositions;
+    public Animator animator;
 
     #endregion
 
@@ -69,26 +70,26 @@ public class PlayerController : MonoBehaviour
 #if UNITY_EDITOR
             if (!Input.anyKey)
             {
-                Motor.GetComponentInChildren<Animator>().speed = 1;
+                Motor.animator.speed = 1;
                 Motor.CurrentDirection = Direction.NONE;
-                Motor.GetComponentInChildren<Animator>().SetFloat("Walking Direction", 0);
-                Motor.GetComponentInChildren<Animator>().SetBool("Moving", false);
+                Motor.animator.SetFloat("Walking Direction", 0);
+                Motor.animator.SetBool("Moving", false);
                 
             }
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                Motor.GetComponentInChildren<Animator>().speed = 1 / Motor.animSpeed;
+                Motor.animator.speed = 1 / Motor.animSpeed;
                 Motor.CurrentDirection = Direction.LEFT;
-                Motor.GetComponentInChildren<Animator>().SetFloat("Walking Direction", -1);
-                Motor.GetComponentInChildren<Animator>().SetBool("Moving", true);
+                Motor.animator.SetFloat("Walking Direction", -1);
+                Motor.animator.SetBool("Moving", true);
                 
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                Motor.GetComponentInChildren<Animator>().speed = 1 / Motor.animSpeed;
+                Motor.animator.speed = 1 / Motor.animSpeed;
                 Motor.CurrentDirection = Direction.RIGHT;
-                Motor.GetComponentInChildren<Animator>().SetFloat("Walking Direction", 1);
-                Motor.GetComponentInChildren<Animator>().SetBool("Moving", true);
+                Motor.animator.SetFloat("Walking Direction", 1);
+                Motor.animator.SetBool("Moving", true);
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -124,9 +125,9 @@ public class PlayerController : MonoBehaviour
                             Cannon_Global.Instance.Presentation.TouchIndicator.transform.GetChild(1).gameObject.SetActive(true);
                             Cannon_Global.Instance.Presentation.TouchIndicator.transform.GetChild(2).gameObject.SetActive(true);
                             Motor.CurrentDirection = Direction.RIGHT;
-                            Motor.GetComponentInChildren<Animator>().speed = 1 / Motor.animSpeed;
-                            Motor.GetComponentInChildren<Animator>().SetFloat("Walking Direction", 1);
-                            Motor.GetComponentInChildren<Animator>().SetBool("Moving", true);
+                            Motor.animator.speed = 1 / Motor.animSpeed;
+                            Motor.animator.SetFloat("Walking Direction", 1);
+                            Motor.animator.SetBool("Moving", true);
                         }
                         else if(direction.x < -0.1f)
                         {
@@ -134,17 +135,17 @@ public class PlayerController : MonoBehaviour
                             Cannon_Global.Instance.Presentation.TouchIndicator.transform.GetChild(1).gameObject.SetActive(true);
                             Cannon_Global.Instance.Presentation.TouchIndicator.transform.GetChild(2).gameObject.SetActive(false);
                             Motor.CurrentDirection = Direction.LEFT;
-                            Motor.GetComponentInChildren<Animator>().speed = 1 / Motor.animSpeed;
-                            Motor.GetComponentInChildren<Animator>().SetFloat("Walking Direction", -1);
-                            Motor.GetComponentInChildren<Animator>().SetBool("Moving", true);
+                            Motor.animator.speed = 1 / Motor.animSpeed;
+                            Motor.animator.SetFloat("Walking Direction", -1);
+                            Motor.animator.SetBool("Moving", true);
                         }
                         break;
                     case (TouchPhase.Ended):
                         Cannon_Global.Instance.Presentation.TouchIndicator.SetActive(false);
                         Motor.CurrentDirection = Direction.NONE;
-                        Motor.GetComponentInChildren<Animator>().speed = 1;
-                        Motor.GetComponentInChildren<Animator>().SetFloat("Walking Direction", 0);
-                        Motor.GetComponentInChildren<Animator>().SetBool("Moving", false);
+                        Motor.animator.speed = 1;
+                        Motor.animator.SetFloat("Walking Direction", 0);
+                        Motor.animator.SetBool("Moving", false);
                         break;
                 }
             }
@@ -163,13 +164,13 @@ public class PlayerController : MonoBehaviour
         isInvulnerable = true;
         //Debug.Log("Taking Damage");
         curHealth--;
-        Motor.GetComponentInChildren<Animator>().speed = 3;
-        this.GetComponentInChildren<Animator>().SetBool("Hit", true);
+        Motor.animator.speed = 3;
+       animator.SetBool("Hit", true);
         //Debug.Log(curHealth);
         if (curHealth == 0)
         {
             PlayerDies();
-            this.GetComponentInChildren<Animator>().SetBool("Hit", false);
+            animator.SetBool("Hit", false);
             yield return null;
         }
         else
@@ -179,7 +180,7 @@ public class PlayerController : MonoBehaviour
             Cannon_Global.Instance.Assets.RightWall.GetComponent<EnemyColliderDetection>().enabled = false;
             Cannon_EventHandler.instance.playerHitHandler();
             yield return new WaitForSeconds(0.1f);
-            this.GetComponentInChildren<Animator>().SetBool("Hit", false);
+            animator.SetBool("Hit", false);
             while (Cannon_Global.Instance.Assets.ImmuneBarrier.activeSelf)
             {
                 yield return null;
@@ -196,9 +197,9 @@ public class PlayerController : MonoBehaviour
     private void PlayerDies()
     {
         Motor.CurrentDirection = Direction.NONE;
-        Motor.GetComponentInChildren<Animator>().SetFloat("Walking Direction", 0);
-        Motor.GetComponentInChildren<Animator>().SetBool("Moving", false);
-        Motor.GetComponentInChildren<Animator>().SetBool("Playing", false);      
+        Motor.animator.SetFloat("Walking Direction", 0);
+        Motor.animator.SetBool("Moving", false);
+        Motor.animator.SetBool("Playing", false);      
         Cannon_Global.Instance.Presentation.EndGamePresentation();
         isInvulnerable = false;
         curBombs = 0;
@@ -289,7 +290,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetCharacterToReady()
     {
-        this.transform.GetChild(0).GetComponent<Animator> ().SetBool("Playing", true);
+        animator.SetBool("Playing", true);
         
     }
 

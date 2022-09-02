@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour {
     public Coroutine DamageRoutine;
 
     public AudioClip takeDamageSound;
+    public AudioSource audioSource;
+
+    public Rigidbody rb;
 
     private bool canTakeDamage;
     private bool dying;
@@ -26,7 +29,7 @@ public class Enemy : MonoBehaviour {
 
     public void AddCollisionStrength(float colStr, Transform incTransform)
     {
-        this.GetComponent<Rigidbody>().AddForce(incTransform.up * colStr, ForceMode.VelocityChange);
+        rb.AddForce(incTransform.up * colStr, ForceMode.VelocityChange);
     }
 
     public void PublicTakeDamage(int p_incDamage = 1, GunState p_gs = GunState.CANNON, float p_fireDelay = 0.0f)
@@ -50,7 +53,7 @@ public class Enemy : MonoBehaviour {
                 Die();
                 yield return null;
             }
-            this.GetComponent<AudioSource>().PlayOneShot(takeDamageSound, .1f * Cannon_Global.Instance.Audio.masterVolume * Cannon_Global.Instance.Audio.soundVolume);
+            audioSource.PlayOneShot(takeDamageSound, .1f * Cannon_Global.Instance.Audio.masterVolume * Cannon_Global.Instance.Audio.soundVolume);
             Cannon_EventHandler.instance.gainPointsHandler(10);
             if (gs == GunState.LAZER)
             {
@@ -113,7 +116,7 @@ public class Enemy : MonoBehaviour {
             {
                 if (collision.collider.GetComponentInParent<EnemyColliderDetection>().ApplicableForce == ForcePushDirection.NONE)
                 {
-                    this.GetComponent<Rigidbody>().AddForce(collision.collider.GetComponentInParent<EnemyColliderDetection>().EnemyForceMagnitude * (this.GetComponent<Rigidbody>().velocity.normalized - collision.collider.GetComponentInParent<Rigidbody>().velocity.normalized), ForceMode.VelocityChange);
+                    rb.AddForce(collision.collider.GetComponentInParent<EnemyColliderDetection>().EnemyForceMagnitude * (rb.velocity.normalized - collision.collider.GetComponentInParent<Rigidbody>().velocity.normalized), ForceMode.VelocityChange);
                 }
             }
             if (collision.collider.GetComponent<EnemyColliderDetection>() != null)
@@ -131,7 +134,7 @@ public class Enemy : MonoBehaviour {
                             pushDirection = Vector3.up;
                             break;
                     }
-                    this.GetComponent<Rigidbody>().AddForce(pushDirection * collision.collider.GetComponent<EnemyColliderDetection>().EnemyForceMagnitude * this.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+                    rb.AddForce(pushDirection * collision.collider.GetComponent<EnemyColliderDetection>().EnemyForceMagnitude * rb.mass, ForceMode.Impulse);
                 
             }
         }
