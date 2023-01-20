@@ -208,7 +208,7 @@ public class Cannon_Presentation : MonoBehaviour, IUnityAdsListener {
             Destroy(t.gameObject);
         }
         EndGameScoreText.text = Score.ToString();
-        Cannon_Global.Instance.CurrentEnemyCount = 0;
+        Cannon_EventHandler.instance.resetEnemyCountHandler();
         Cannon_Global.Instance.GameRunning = false;
         StartGameUIParent.SetActive(false);
         InGameUIParent.SetActive(false);

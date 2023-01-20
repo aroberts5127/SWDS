@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour {
     {
         dying = true;
         Cannon_Global.Instance.Audio.EnemyDeadAudio();
-        Cannon_Global.Instance.CurrentEnemyCount -= 1;
+        Cannon_EventHandler.instance.updateEnemyCountHandler(-1);
         if (earnRewards)
         {
             Cannon_EventHandler.instance.gainPointsHandler(50);

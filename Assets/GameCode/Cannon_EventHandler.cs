@@ -13,6 +13,8 @@ public class Cannon_EventHandler : MonoBehaviour
     public static event Action useBombEvent;
     public static event Action userLoadedEvent;
     public static event Action userCurrencyUpdateEvent;
+    public static event Action resetEnemyCountEvent;
+    public static event Action<int> updateEnemyCountEvent;
 
     void Awake()
     {
@@ -46,6 +48,16 @@ public class Cannon_EventHandler : MonoBehaviour
     public void currencyUpdateHandler()
     {
         userCurrencyUpdateEvent?.Invoke();
+    }
+
+    public void resetEnemyCountHandler()
+    {
+        resetEnemyCountEvent?.Invoke();
+    }
+
+    public void updateEnemyCountHandler(int i)
+    {
+        updateEnemyCountEvent?.Invoke(i);
     }
 
 }

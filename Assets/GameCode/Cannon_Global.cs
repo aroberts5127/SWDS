@@ -20,8 +20,6 @@ public class Cannon_Global : MonoBehaviour {
     public float MovementMaxMin;
     public bool GameRunning = false;
 
-    public int MaxEnemyCount;
-    public int CurrentEnemyCount;
     public int GamePhase;
 
     [HideInInspector]
