@@ -27,7 +27,6 @@ public class GunBase : MonoBehaviour {
 
     public GameObject singleShotAmmunition;
     public GameObject spreadShotAmmunition;
-    private bool isFiring;
     public AudioSource GunSound;
     public ShotType currentShotType;
     public Coroutine FireRoutine;
@@ -36,7 +35,6 @@ public class GunBase : MonoBehaviour {
     void Start() {
         Cannon_Global.Instance.CurrentGun = this;
         AmmoSpawn = this.transform.GetChild(0);
-        isFiring = false;
         currentShotType = ShotType.SINGLE;
     }
 

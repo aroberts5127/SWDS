@@ -8,7 +8,6 @@ public class EnemySpawn : MonoBehaviour {
 
     private Coroutine SpawnRoutine;
     public float SpawnTimeDelay;
-    private bool CheckSpawning;
 
 	// Use this for initialization
 	void Start () {
@@ -28,8 +27,6 @@ public class EnemySpawn : MonoBehaviour {
 
     public IEnumerator SpawnEnemy(int size)
     {
-
-        CheckSpawning = true;
         GameObject enemy;
         int spawnNo = 0;
         if (size <= (10 * Cannon_Global.Instance.GamePhase) / 3)

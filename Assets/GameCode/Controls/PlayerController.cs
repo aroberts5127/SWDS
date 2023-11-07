@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public int curHealth;
 
     [SerializeField]
-    private int maxBombs;
+    private int maxBombs=0;
     private int curBombs;
 
     public int CurrentBombs

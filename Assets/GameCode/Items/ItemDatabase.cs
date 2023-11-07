@@ -7,16 +7,16 @@ using UnityEngine;
 public class ItemDatabase : ScriptableObject {
 
     [SerializeField]
-    private ItemData[] m_CItems;
+    private ItemData[] m_CItems = null;
 
     [SerializeField]
-    private ItemData[] m_UCItems;
+    private ItemData[] m_UCItems = null;
 
     [SerializeField]
-    private ItemData[] m_RItems;
+    private ItemData[] m_RItems = null;
 
     [SerializeField]
-    private ItemData[] m_URItems;
+    private ItemData[] m_URItems = null;
 
     public ItemData[] CItems { get { return m_CItems; } }
 
@@ -27,6 +27,13 @@ public class ItemDatabase : ScriptableObject {
     public ItemData[] URItems { get { return m_CItems; } }
 
 
+    public ItemDatabase()
+    {
+        m_CItems = new ItemData[0];
+        m_UCItems = new ItemData[0];
+        m_RItems = new ItemData[0];
+        m_URItems = new ItemData[0];
+    }
 }
 
 

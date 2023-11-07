@@ -13,13 +13,11 @@ public class PlayerMotor : MonoBehaviour {
 
     public float moveSpeed;
     public float animSpeed;
-    private bool isFiring;
 
     // Use this for initialization
     void Start () {
         ResetTransform();
         CurrentDirection = Direction.NONE;
-        isFiring = false;
         //ChangeGuns();
         
 	}
@@ -41,9 +39,6 @@ public class PlayerMotor : MonoBehaviour {
         }
     }
 
-
-
-
     public void ResetTransform()
     {
         this.transform.position = Cannon_Global.Instance.Assets.PlayerStart;
@@ -53,26 +48,6 @@ public class PlayerMotor : MonoBehaviour {
         Cannon_Global.Instance.CurrentGun.ResetFireRate();
         Cannon_Global.Instance.CurrentGun.singleShotAmmunition = Cannon_Global.Instance.Assets.SingleShotBulletTypes[0];
         Cannon_Global.Instance.CurrentGun.spreadShotAmmunition = Cannon_Global.Instance.Assets.SpreadShotBulletTypes[0];
-    }
-
-
-    public void ChangeGuns(GunState gs = GunState.CANNON)
-    {
-        GameObject oldGun = Cannon_Global.Instance.CurrentGun.gameObject;
-        GameObject gun;
-        if(gs == GunState.CANNON)
-            gun = Instantiate(Cannon_Global.Instance.Assets.GunObject, Cannon_Global.Instance.Player.transform, false);
-        else if (gs == GunState.LAZER)
-            gun = Instantiate(Cannon_Global.Instance.Assets.LaserObject, Cannon_Global.Instance.Player.transform, false);
-        else
-            gun = Instantiate(Cannon_Global.Instance.Assets.GunObject, Cannon_Global.Instance.Player.transform, false); ;
-        ConstraintSource s = new ConstraintSource();
-        s.sourceTransform = Cannon_Global.Instance.Assets.WeaponParent;
-        s.weight = 1;
-        gun.GetComponent<ParentConstraint>().SetSource(0, s);
-        Destroy(oldGun);
-
-        Cannon_Global.Instance.CurrentGun = gun.GetComponent<GunBase>();
     }
 
     public void UpgradeGun(ShotType s)

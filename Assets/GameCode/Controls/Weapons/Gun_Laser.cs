@@ -6,7 +6,7 @@ public class Gun_Laser : MonoBehaviour {
 
     public float AudioVolume;
     private List<Collider> collidedWith;
-    private int hitTargets = 1;
+    //private int hitTargets = 1;
     //zprivate List<GameObject> LazerAmmo;
 
     public bool active;
@@ -17,11 +17,9 @@ public class Gun_Laser : MonoBehaviour {
 
     public Coroutine FireRoutine;
     public float FireRate;
-    private GunState gunState;
 
 	// Use this for initialization
 	void Start () {
-        gunState = GunState.LAZER;
     }
 
 

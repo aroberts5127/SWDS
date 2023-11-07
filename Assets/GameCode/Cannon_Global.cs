@@ -4,7 +4,6 @@ using UnityEngine;
 
 //TODO: Change bool GameRunning instances to CurrentGameState Checks;
 public enum GameState { START, LOADING, PLAYING, ENDGAME}
-public enum GunState { NONE, CANNON, LAZER }
 
 public class Cannon_Global : MonoBehaviour {
 

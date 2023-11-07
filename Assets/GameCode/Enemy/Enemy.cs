@@ -32,16 +32,16 @@ public class Enemy : MonoBehaviour {
         rb.AddForce(incTransform.up * colStr, ForceMode.VelocityChange);
     }
 
-    public void PublicTakeDamage(int p_incDamage = 1, GunState p_gs = GunState.CANNON, float p_fireDelay = 0.0f)
+    public void PublicTakeDamage(int p_incDamage = 1)
     {
         if (DamageRoutine == null)
         {
-            DamageRoutine = StartCoroutine(TakeDamage(p_incDamage, p_gs, p_fireDelay));
+            DamageRoutine = StartCoroutine(TakeDamage(p_incDamage));
         }
 
     }
 
-    public IEnumerator TakeDamage(int incDamage, GunState gs, float fireDelay)
+    public IEnumerator TakeDamage(int incDamage)
     {
         if (canTakeDamage)
         {
@@ -55,16 +55,6 @@ public class Enemy : MonoBehaviour {
             }
             audioSource.PlayOneShot(takeDamageSound, .1f * Cannon_Global.Instance.Audio.masterVolume * Cannon_Global.Instance.Audio.soundVolume);
             Cannon_EventHandler.instance.gainPointsHandler(10);
-            if (gs == GunState.LAZER)
-            {
-                yield return new WaitForSeconds(fireDelay);
-                
-            }
-            else
-            {
-                yield return new WaitForEndOfFrame();
-                
-            }
             canTakeDamage = true;
         }
         DamageRoutine = null;

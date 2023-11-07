@@ -12,11 +12,11 @@ public class ItemData
 {
     #region Private
     [SerializeField]
-    private string m_Name;
+    private string m_Name = "Item Name";
     [SerializeField]
-    private int m_ID;
+    private int m_ID = -1;
     [SerializeField]
-    private GameObject m_RepObject;
+    private GameObject m_RepObject = null;
     #endregion
 
     public string Name { get { return m_Name; } }
