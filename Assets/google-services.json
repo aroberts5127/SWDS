@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "184287527321",
+    "project_id": "awr-gamedev-prod",
+    "storage_bucket": "awr-gamedev-prod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184287527321:android:0463a9f93b2dc239c3d308",
+        "android_client_info": {
+          "package_name": "com.AWRGames.SoloWorldDefender"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "184287527321-cvjrh9nakseb3kbl5fvoc7pr6bkpah2f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.AWRGames.SoloWorldDefender",
+            "certificate_hash": "189a77640ff0aa2c9df47bac9b822edbdca0fde5"
+          }
+        },
+        {
+          "client_id": "184287527321-l0msfnkg3ku7dj3a51s0otde9oq2n61u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEeqtdvTMU_e1qqlnclZNfA6GQTZzaOpk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "184287527321-l0msfnkg3ku7dj3a51s0otde9oq2n61u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
