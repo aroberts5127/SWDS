@@ -11,7 +11,7 @@ public class AWR_AuthController : MonoBehaviour
 {
     FirebaseAuth auth;
     FirebaseApp app;
-    string google_WebClientID;
+    string google_WebClientID = "184287527321-1lmdqo4nuku543cl5osm2k1cpl89tqj2.apps.googleusercontent.com";
     private GoogleSignInConfiguration google_config;
 
     // Start is called before the first frame update
@@ -62,12 +62,12 @@ public class AWR_AuthController : MonoBehaviour
         Debug.Log("Canceled");
       } else  {
         Debug.Log("Welcome: " + task.Result.DisplayName + "!");
-        exchangeGoogleTokenForFirebaseToken(task.Result.IDToken, task.Result.AuthCode);
+        exchangeGoogleTokenForFirebaseToken(task.Result.IDToken);
       }
     }
 
-    private void exchangeGoogleTokenForFirebaseToken(string googleIdToken, string googleAccessToken){
-         Firebase.Auth.Credential credential = Firebase.Auth.GoogleAuthProvider.GetCredential(googleIdToken, googleAccessToken);
+    private void exchangeGoogleTokenForFirebaseToken(string googleIdToken){
+        Credential credential = GoogleAuthProvider.GetCredential(googleIdToken, null);
         auth.SignInAndRetrieveDataWithCredentialAsync(credential).ContinueWith(task => {
         if (task.IsCanceled) {
         Debug.LogError("SignInAndRetrieveDataWithCredentialAsync was canceled.");
