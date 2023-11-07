@@ -73,7 +73,6 @@
      <Compile Include="Assets\GoogleSignIn\Impl\GoogleSignInImpl.cs" />
      <Compile Include="Assets\GoogleSignIn\Impl\NativeFuture.cs" />
      <Compile Include="Assets\GoogleSignIn\Impl\SignInHelperObject.cs" />
-     <Compile Include="Assets\SignInSample\SigninSampleScript.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
@@ -290,12 +289,6 @@
     </Reference>
     <Reference Include="Google.MiniJson">
         <HintPath>D:\RobertsAndrew_Unity\CannonGame\Assets\Firebase\Plugins\Google.MiniJson.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Compat">
-        <HintPath>D:\RobertsAndrew_Unity\CannonGame\Assets\Parse\Plugins\Unity.Compat.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Tasks">
-        <HintPath>D:\RobertsAndrew_Unity\CannonGame\Assets\Parse\Plugins\Unity.Tasks.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
         <HintPath>D:\RobertsAndrew_Unity\CannonGame\Library\PackageCache\com.unity.analytics@3.3.5\Unity.Analytics.Editor.dll</HintPath>

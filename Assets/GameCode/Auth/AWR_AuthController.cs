@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 using Firebase.Auth;
 using Firebase;
-using Firebase.Extensions;
- using System.Threading.Tasks;
 using Google;
 
 public class AWR_AuthController : MonoBehaviour
@@ -62,7 +60,7 @@ public class AWR_AuthController : MonoBehaviour
         Debug.Log("Canceled");
       } else  {
         Debug.Log("Welcome: " + task.Result.DisplayName + "!");
-        exchangeGoogleTokenForFirebaseToken(task.Result.IDToken);
+        exchangeGoogleTokenForFirebaseToken(task.Result.IdToken);
       }
     }
 
