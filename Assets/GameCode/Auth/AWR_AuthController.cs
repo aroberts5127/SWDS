@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Firebase.Auth;
 using Firebase;
 using Google;
+using UnityEngine.UI;
 
 public class AWR_AuthController : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class AWR_AuthController : MonoBehaviour
     FirebaseApp app;
     string google_WebClientID = "184287527321-1lmdqo4nuku543cl5osm2k1cpl89tqj2.apps.googleusercontent.com";
     private GoogleSignInConfiguration google_config;
+
+    [SerializeField]
+    private Button SIWG_Button;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +24,7 @@ public class AWR_AuthController : MonoBehaviour
             RequestIdToken = true
         };
         InitializeFirebase();
+        SIWG_Button.onClick.AddListener(onCLick_SignInWithGoogle);
     }
 
     // Update is called once per frame
@@ -29,19 +34,23 @@ public class AWR_AuthController : MonoBehaviour
     }
 
     private void InitializeFirebase(){
-        CheckForDependencies();
+        //CheckForDependencies();
         auth = FirebaseAuth.DefaultInstance;
     }
 
     public void onCLick_SignInWithGoogle()   
     {
+      Debug.Log("Clicked To Sign In With Google");
         GoogleSignIn.Configuration = google_config;
         GoogleSignIn.Configuration.UseGameSignIn = false;
         GoogleSignIn.Configuration.RequestIdToken = true;
 
-
+#if !UNITY_EDITOR
         GoogleSignIn.DefaultInstance.SignIn().ContinueWith(
         GoogleOnAuthFinished);
+#else
+        Debug.Log("NEED TO LOG THE USER INTO THE EDITOR");
+#endif
     }
 
     void GoogleOnAuthFinished(Task<GoogleSignInUser> task){
