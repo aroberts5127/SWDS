@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <projectSettings>
   <projectSetting name="com.google.external-dependency-managerAnalyticsCookie" value="9546c7f989ae4e1bb58bc9ad971cfb30" />
@@ -23,4 +24,13 @@
   <projectSetting name="GooglePlayServices.UseGradleDaemon" value="True" />
   <projectSetting name="GooglePlayServices.UseJetifier" value="True" />
   <projectSetting name="GooglePlayServices.VerboseLogging" value="False" />
+=======
+﻿<?xml version="1.0" encoding="utf-8"?>
+<projectSettings>
+  <projectSetting name="Google.IOSResolver.VerboseLoggingEnabled" value="False" />
+  <projectSetting name="Google.PackageManagerResolver.VerboseLoggingEnabled" value="False" />
+  <projectSetting name="Google.VersionHandler.VerboseLoggingEnabled" value="False" />
+  <projectSetting name="GooglePlayServices.PromptBeforeAutoResolution" value="False" />
+  <projectSetting name="GooglePlayServices.UseJetifier" value="True" />
+>>>>>>> d8a0b8e9601068e2f59bbb0470e21142242ad9ff
 </projectSettings>

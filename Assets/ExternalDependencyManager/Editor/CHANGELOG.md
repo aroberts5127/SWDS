@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Version 1.2.177 - Aug 14, 2023
 * iOS Resolver - Added `/opt/homebrew/bin` to Cocoapod executable search path.
   Fixes #627
@@ -63,6 +64,8 @@
 * All - Fixed #477 by properly enabling EDM4U libraries for Unity 2021.2+ when
   the package is installed through `.tgz`
 
+=======
+>>>>>>> d8a0b8e9601068e2f59bbb0470e21142242ad9ff
 # Version 1.2.167 - Oct 6, 2021
 * All - Moved versioned `.dll` in EDM4U to a versioned folder and remove their
   version postfix in their filename. For instance, `IOSResolver.dll` will be
